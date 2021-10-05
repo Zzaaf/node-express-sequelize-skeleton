@@ -8,7 +8,7 @@ const saltRounds = 10;
 
 // маршрутизация главной страницы
 router.route('/')
-  .get((req, res) => {
+  .get(sessionChecker, (req, res) => {
     res.render('home');
   });
 
@@ -40,8 +40,6 @@ router.route('/registration')
 
         // формирование сессии, user добавляется в неё как объект
         req.session.user = user;
-        // console.log(req.session);
-        // console.log(req.session.user);
 
         res.status(201).json({ registration: true, message: '/dashboard' });
       } catch (error) {
@@ -71,7 +69,7 @@ router.route('/login')
       // редирект на панель управления
       res.redirect('/dashboard');
     } else {
-      // редирект на авторизацию в случае
+      // редирект на авторизацию в случае некорректного ввода или отсутствия пользователя в БД
       res.redirect('/login');
     }
   });

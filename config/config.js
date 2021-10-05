@@ -5,7 +5,6 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const app = require('../app');
 const sessionConfig = require('./sessionConfig');
 const { cookiesCleaner } = require('../middleware/auth');
 
