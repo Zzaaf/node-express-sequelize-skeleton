@@ -3,6 +3,7 @@ const config = require('./config/config');
 const mainRouter = require('./routes/mainRouter');
 const usersRouter = require('./routes/usersRouter');
 const errorHandler = require('./middleware/errorHandler');
+const { sequelize } = require('./db/models');
 
 // инициализация приложения 'app'
 const app = express();
@@ -20,7 +21,10 @@ app.use('/users', usersRouter);
 // обработка ошибок из next(error)
 app.use(errorHandler);
 
+// проверка работы ДБ
+sequelize.authenticate();
+
 // прослушивание порта приложения
-app.listen(port, () => console.log(`***Server started at http://localhost:${port} port: OK`));
+app.listen(port, () => console.log(`*** Server started at ${port} port ***`));
 
 module.exports = app;

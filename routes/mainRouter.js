@@ -6,6 +6,14 @@ const { User } = require('../db/models');
 const router = express.Router();
 const saltRounds = 10;
 
+// const { Address6 } = require('ip-address');
+
+// const address = new Address6('2001:0:ce49:7601:e866:efff:62c3:fffe');
+
+// const teredo = address.inspectTeredo();
+
+// console.log(teredo.client4);
+
 // маршрутизация главной страницы
 router.route('/')
   .get(sessionChecker, (req, res) => {
@@ -108,6 +116,7 @@ router.route('/profile')
         email: user.email,
         registration: user.createdAt.slice(0, 10),
         id: user.id,
+        ip: req.ip === '::1' ? '127.0.0.1' : req.ip,
       });
     } else {
       res.redirect('/login');
