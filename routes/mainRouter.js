@@ -6,14 +6,6 @@ const { User } = require('../db/models');
 const router = express.Router();
 const saltRounds = 10;
 
-// const { Address6 } = require('ip-address');
-
-// const address = new Address6('2001:0:ce49:7601:e866:efff:62c3:fffe');
-
-// const teredo = address.inspectTeredo();
-
-// console.log(teredo.client4);
-
 // маршрутизация главной страницы
 router.route('/')
   .get(sessionChecker, (req, res) => {
