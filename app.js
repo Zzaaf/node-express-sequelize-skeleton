@@ -1,4 +1,5 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const config = require('./config/config');
 const mainRouter = require('./routes/mainRouter');
 const usersRouter = require('./routes/usersRouter');
@@ -7,6 +8,9 @@ const { sequelize } = require('./db/models');
 
 // инициализация приложения 'app'
 const app = express();
+
+// использование данных из конфигурации файла .env
+dotenv.config();
 
 // условное формирование порта
 const port = process.env.PORT ?? 3000;

@@ -5,14 +5,17 @@
 
       <div class="form-floating">
         <input type="email" class="form-control" id="loginInputEmail" name="email" placeholder="name@example.com"
-          required autofocus>
+          required autofocus autocomplete="off">
         <label for="loginInputEmail">Email address</label>
       </div>
 
-      <div class="form-floating">
+      <div class="form-floating input-group">
         <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password"
           minlength="8" required>
         <label for="loginPassword">Password</label>
+        <span id="wrapIcon" class="input-group-text">
+          <i id="iconEye" class="bi bi-eye"></i>
+        </span>
       </div>
 
       <div id="feedback" class="invalid-feedback"></div>

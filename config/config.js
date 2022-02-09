@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -10,7 +9,7 @@ const { cookiesCleaner } = require('../middleware/auth');
 
 // главная конфигурация приложения
 const config = (app) => {
-  // use
+  // использование middleware
   app.use(helmet());
   app.use(morgan('dev'));
   app.use(express.json());
@@ -21,12 +20,9 @@ const config = (app) => {
   app.use(session(sessionConfig));
   app.use(cookiesCleaner);
 
-  // set
+  // установка Express настроек
   app.set('view engine', 'hbs');
   app.set('views', 'views');
-
-  // run
-  dotenv.config();
 };
 
 module.exports = config;

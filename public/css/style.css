@@ -2,6 +2,11 @@ body {
   background-color: #f5f5f5;
 }
 
+.input-group-text {
+  cursor: pointer;
+  border-top-right-radius: 0;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -36,9 +41,6 @@ body {
 
 .form-signin #regConfirmPassword,
 .form-signin #loginPassword {
-  margin-bottom: -1px;
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }

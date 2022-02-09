@@ -3,6 +3,10 @@ const pass = document.querySelector('#regPassword');
 const confPass = document.querySelector('#regConfirmPassword');
 const feedback = document.querySelector('#feedback');
 const deleteBtn = document.querySelector('#deleteBtn');
+const iconEye = document.querySelector('#iconEye');
+const wrapIcon = document.querySelector('#wrapIcon');
+const loginPassword = document.querySelector('#loginPassword');
+const footer = document.querySelector('#footer');
 
 function validate() {
   if (pass.value !== confPass.value) {
@@ -71,4 +75,22 @@ if (deleteBtn) {
       window.location.href = data.message;
     }
   });
+}
+
+if (wrapIcon) {
+  wrapIcon.addEventListener('click', () => {
+    if (iconEye.classList.contains('bi-eye')) {
+      iconEye.classList.remove('bi-eye');
+      iconEye.classList.add('bi-eye-slash');
+      loginPassword.setAttribute('type', 'text');
+    } else {
+      iconEye.classList.add('bi-eye');
+      iconEye.classList.remove('bi-eye-slash');
+      loginPassword.setAttribute('type', 'password');
+    }
+  });
+}
+
+if (footer) {
+  footer.innerHTML = `&copy; Elbrus Bootcamp ${new Date().getFullYear()}`;
 }
