@@ -6,9 +6,8 @@ const saltRounds = 10;
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Users', [{
-      id: 1,
       username: 'Demo User',
-      email: 'demo@mail.ru',
+      email: 'demo@gmail.com',
       password: await bcrypt.hash(process.env.DEMO_PASS, saltRounds),
       createdAt: new Date(),
       updatedAt: new Date(),

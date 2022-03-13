@@ -1,13 +1,16 @@
 {
   "name": "node-express-sequelize-skeleton",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js --ignore ./sessions",
-    "make-seed": "npx sequelize-cli seed:generate --name demo-user",
-    "seed": "npx sequelize-cli db:seed:all"
+    "db-seed": "npx sequelize-cli db:seed:all",
+    "db-seed-undo": "npx sequelize db:seed:undo:all",
+    "db-create": "npx sequelize db:create",
+    "db-drop": "npx sequelize db:drop",
+    "db-migrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate"
   },
   "keywords": [],
   "author": "",
@@ -29,9 +32,9 @@
     "session-file-store": "^1.5.0"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.24.2",
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
     "nodemon": "^2.0.13"
   }
 }

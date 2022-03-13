@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const hbs = require('hbs');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -23,6 +24,9 @@ const config = (app) => {
   // установка Express настроек
   app.set('view engine', 'hbs');
   app.set('views', 'views');
+
+  // регистрация "помощников" для HBS
+  hbs.registerHelper('currentYear', () => `© Elbrus Bootcamp ${new Date().getFullYear()}`);
 };
 
 module.exports = config;

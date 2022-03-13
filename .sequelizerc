@@ -1,3 +1,6 @@
+// использование данных из конфигурации файла .env
+require('dotenv').config();
+
 const path = require('path');
 
 module.exports = {

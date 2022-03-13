@@ -90,7 +90,3 @@ if (wrapIcon) {
     }
   });
 }
-
-if (footer) {
-  footer.innerHTML = `&copy; Elbrus Bootcamp ${new Date().getFullYear()}`;
-}
