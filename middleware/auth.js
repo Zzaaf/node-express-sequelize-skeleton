@@ -17,4 +17,13 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
-module.exports = { cookiesCleaner, sessionChecker };
+// промежуточная функция наполнения локальных переменных
+const resLocals = (req, res, next) => {
+  if (req.session.user) {
+    res.locals.user = req.session.user;
+  }
+
+  next();
+};
+
+module.exports = { cookiesCleaner, sessionChecker, resLocals };

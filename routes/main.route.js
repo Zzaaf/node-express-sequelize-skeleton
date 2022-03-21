@@ -104,7 +104,7 @@ router.route('/profile')
 
     if (user) {
       res.render('profile', {
-        name: user.username,
+        username: user.username,
         email: user.email,
         registration: user.createdAt.slice(0, 10),
         id: user.id,

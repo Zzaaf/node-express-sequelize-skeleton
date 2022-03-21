@@ -9,6 +9,25 @@ router.route('/')
   });
 
 router.route('/:id')
+  .get((req, res) => {
+    const { id } = req.params;
+    const { username, email } = req.session.user;
+
+    res.render('edit', { username, email, id });
+  })
+  .put((req, res) => {
+    const { id } = req.params;
+
+    User.update(req.body, { where: { id }, returning: true, raw: true })
+      .then((updatedUser) => {
+        const [, [update]] = updatedUser;
+        // req.session.user = updatedUser[1][0];
+        req.session.user = update;
+        // console.log(update);
+        res.json({ updated: true, message: '/profile' });
+      })
+      .catch((error) => res.status(500).render('error', { error: error.message }));
+  })
   .delete((req, res) => {
     const { id } = req.params;
 

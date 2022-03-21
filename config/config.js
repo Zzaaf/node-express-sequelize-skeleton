@@ -5,8 +5,9 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const path = require('path');
 const sessionConfig = require('./sessionConfig');
-const { cookiesCleaner } = require('../middleware/auth');
+const { cookiesCleaner, resLocals } = require('../middleware/auth');
 
 // главная конфигурация приложения
 const config = (app) => {
@@ -20,6 +21,7 @@ const config = (app) => {
   app.use(cookieParser());
   app.use(session(sessionConfig));
   app.use(cookiesCleaner);
+  app.use(resLocals);
 
   // установка Express настроек
   app.set('view engine', 'hbs');
@@ -27,6 +29,9 @@ const config = (app) => {
 
   // регистрация "помощников" для HBS
   hbs.registerHelper('currentYear', () => `© Elbrus Bootcamp ${new Date().getFullYear()}`);
+
+  // регистрация подшаблонов
+  hbs.registerPartials(path.join(process.env.PWD, 'views', 'partials'));
 };
 
 module.exports = config;

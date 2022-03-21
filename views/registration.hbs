@@ -1,4 +1,4 @@
-<section class="text-center">
+<section class="container text-center">
   <main class="form-signin">
     <form id="formRegistration" method="POST" action="/registration">
       <h1 class="h3 mb-3 fw-normal">Fill in the fields</h1>
@@ -10,8 +10,8 @@
       </div>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="regInputEmail" name="email" placeholder="name@example.com"
-          required autocomplete="off">
+        <input type="email" class="form-control" id="regInputEmail" name="email" placeholder="name@example.com" required
+          autocomplete="off">
         <label for="regInputEmail">Email address</label>
       </div>
 
@@ -22,8 +22,8 @@
       </div>
 
       <div class="form-floating">
-        <input type="password" class="form-control" id="regConfirmPassword" placeholder="Confirm Password"
-          minlength="8" required>
+        <input type="password" class="form-control" id="regConfirmPassword" placeholder="Confirm Password" minlength="8"
+          required>
         <label for="regPassword">Confirm Password</label>
       </div>
 
@@ -35,4 +35,6 @@
     </form>
 
   </main>
+
+  {{>footer}}
 </section>

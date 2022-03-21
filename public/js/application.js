@@ -1,4 +1,5 @@
-const form = document.querySelector('#formRegistration');
+const formRegistration = document.querySelector('#formRegistration');
+const formEdit = document.querySelector('#formEdit');
 const pass = document.querySelector('#regPassword');
 const confPass = document.querySelector('#regConfirmPassword');
 const feedback = document.querySelector('#feedback');
@@ -6,7 +7,6 @@ const deleteBtn = document.querySelector('#deleteBtn');
 const iconEye = document.querySelector('#iconEye');
 const wrapIcon = document.querySelector('#wrapIcon');
 const loginPassword = document.querySelector('#loginPassword');
-const footer = document.querySelector('#footer');
 
 function validate() {
   if (pass.value !== confPass.value) {
@@ -23,8 +23,8 @@ function validate() {
   return true;
 }
 
-if (form) {
-  form.addEventListener('submit', async (event) => {
+if (formRegistration) {
+  formRegistration.addEventListener('submit', async (event) => {
     // отмена дефолтного поведения формы
     event.preventDefault();
 
@@ -56,6 +56,26 @@ if (form) {
         feedback.textContent = data.message;
         feedback.style.display = 'block';
       }
+    }
+  });
+}
+
+if (formEdit) {
+  formEdit.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const { action, username, email } = event.target;
+
+    const response = await fetch(action, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: username.value, email: email.value }),
+    });
+
+    const data = await response.json();
+
+    if (data.updated) {
+      window.location.href = data.message;
     }
   });
 }

@@ -1,0 +1,20 @@
+{{>header}}
+
+<main class="flex-shrink-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <form id="formEdit" class="col-6 mt-5" action="/users/{{id}}">
+        <div class="mb-3">
+          <input type="text" name="username" class="form-control" placeholder="User name" value="{{username}}">
+        </div>
+        <div class="mb-3">
+          <input type="email" name="email" class="form-control" placeholder="Email" value="{{email}}">
+        </div>
+        <a href="/profile" class="btn btn-primary">Back to profile</a>
+        <button type="submit" class="btn btn-success">Save</button>
+      </form>
+    </div>
+
+    {{>footer}}
+  </div>
+</main>
