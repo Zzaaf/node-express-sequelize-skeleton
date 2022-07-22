@@ -3,20 +3,27 @@ const bcrypt = require('bcrypt');
 const { sessionChecker } = require('../middleware/auth');
 const { User } = require('../db/models');
 
+// компоненты
+const Home = require('../views/Home');
+const Registration = require('../views/Registration');
+const Login = require('../views/Login');
+const Dashboard = require('../views/Dashboard');
+const Profile = require('../views/Profile');
+
 const router = express.Router();
 const saltRounds = 10;
 
 // маршрутизация главной страницы
 router.route('/')
   .get(sessionChecker, (req, res) => {
-    res.render('home');
+    res.renderComponent(Home, { title: 'Simple Auth System' });
   });
 
 // маршрутизация регистрации
 router.route('/registration')
 
   .get(sessionChecker, (req, res) => {
-    res.render('registration');
+    res.renderComponent(Registration);
   })
 
   // POST запрос с функцией next, для передачи ошибки
@@ -51,7 +58,7 @@ router.route('/registration')
 // маршрутизация авторизации
 router.route('/login')
   .get((req, res) => {
-    res.render('login');
+    res.renderComponent(Login, { title: 'Login in system' });
   })
 
   .post(async (req, res) => {
@@ -103,12 +110,11 @@ router.route('/profile')
     const { user } = req.session;
 
     if (user) {
-      res.render('profile', {
-        username: user.username,
-        email: user.email,
+      res.renderComponent(Profile, {
+        user,
         registration: user.createdAt.slice(0, 10),
-        id: user.id,
         ip: req.ip === '::1' ? '127.0.0.1' : req.ip,
+        title: 'Your Profile',
       });
     } else {
       res.redirect('/login');
@@ -121,7 +127,7 @@ router.route('/dashboard')
     const { user } = req.session;
 
     if (user) {
-      res.render('dashboard', { name: user.username });
+      res.renderComponent(Dashboard, { title: 'Your Dashboard', user });
     } else {
       res.redirect('/login');
     }

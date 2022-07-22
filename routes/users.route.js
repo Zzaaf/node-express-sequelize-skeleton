@@ -1,19 +1,23 @@
 const express = require('express');
 const { User } = require('../db/models');
 
+// компоненты
+const Login = require('../views/Login');
+const Edit = require('../views/Edit');
+
 const router = express.Router();
 
 router.route('/')
   .get((req, res) => {
-    res.render('login');
+    res.renderComponent(Login);
   });
 
 router.route('/:id')
   .get((req, res) => {
     const { id } = req.params;
-    const { username, email } = req.session.user;
+    const { user } = req.session;
 
-    res.render('edit', { username, email, id });
+    res.renderComponent(Edit, { user, id, title: 'Edit your profile' });
   })
   .put((req, res) => {
     const { id } = req.params;
@@ -23,7 +27,6 @@ router.route('/:id')
         const [, [update]] = updatedUser;
         // req.session.user = updatedUser[1][0];
         req.session.user = update;
-        // console.log(update);
         res.json({ updated: true, message: '/profile' });
       })
       .catch((error) => res.status(500).render('error', { error: error.message }));
