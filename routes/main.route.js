@@ -73,11 +73,11 @@ router.route('/login')
       // формирование сессии на основе полученного пользователя из БД
       req.session.user = user;
 
-      // редирект на панель управления
-      res.redirect('/dashboard');
+      // JSON ответ для редиректа на панель управления
+      res.json({ login: true, message: '/dashboard' });
     } else {
-      // редирект на авторизацию в случае некорректного ввода или отсутствия пользователя в БД
-      res.redirect('/login');
+      // JSON ответ с сообщением в случае некорректного ввода или отсутствия пользователя в БД
+      res.status(403).json({ login: false, message: 'This email is not used in the system' });
     }
   });
 
@@ -113,7 +113,7 @@ router.route('/profile')
       res.renderComponent(Profile, {
         user,
         registration: user.createdAt.slice(0, 10),
-        ip: req.ip === '::1' ? '127.0.0.1' : req.ip,
+        ip: req.ip ?? '127.0.0.1',
         title: 'Your Profile',
       });
     } else {

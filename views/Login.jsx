@@ -45,7 +45,7 @@ function Login({ title }) {
 
             <div id="feedback" className="invalid-feedback" />
 
-            <button type="button" className="w-100 btn btn-lg btn-success mt-1">Login now</button>
+            <button type="submit" className="w-100 btn btn-lg btn-success mt-1">Login now</button>
             <a href="/" className="w-100 btn btn-lg btn-outline-secondary mt-1">Back home</a>
 
           </form>

@@ -1,5 +1,6 @@
 const formRegistration = document.querySelector('#formRegistration');
 const formEdit = document.querySelector('#formEdit');
+const formLogin = document.querySelector('#formLogin');
 const pass = document.querySelector('#regPassword');
 const confPass = document.querySelector('#regConfirmPassword');
 const feedback = document.querySelector('#feedback');
@@ -56,6 +57,37 @@ if (formRegistration) {
         feedback.textContent = data.message;
         feedback.style.display = 'block';
       }
+    }
+  });
+}
+
+if (formLogin) {
+  formLogin.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    // формирование переменных через деструктуризацию
+    const {
+      method, action, email, password,
+    } = event.target;
+
+    const response = await fetch(action, {
+      method,
+      headers: { 'Content-Type': 'Application/json' },
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value,
+      }),
+    });
+
+    // распаковка ответа в формате JSON
+    const data = await response.json();
+
+    // клиентский редиект на URL полученный из ответа сервера + обработка ошибки отсутствия почты в БД
+    if (!data.login) {
+      feedback.textContent = data.message;
+      feedback.style.display = 'block';
+    } else {
+      window.location.href = data.message;
     }
   });
 }
