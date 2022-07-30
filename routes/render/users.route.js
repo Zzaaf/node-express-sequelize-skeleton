@@ -1,11 +1,9 @@
-const express = require('express');
-const { User } = require('../db/models');
+const router = require('express').Router();
+const { User } = require('../../db/models');
 
 // компоненты
-const Login = require('../views/Login');
-const Edit = require('../views/Edit');
-
-const router = express.Router();
+const Login = require('../../views/Authorization');
+const Edit = require('../../views/Edit');
 
 router.route('/')
   .get((req, res) => {
@@ -27,9 +25,9 @@ router.route('/:id')
         const [, [update]] = updatedUser;
         // req.session.user = updatedUser[1][0];
         req.session.user = update;
-        res.json({ updated: true, message: '/profile' });
+        res.json({ updated: true, url: '/profile' });
       })
-      .catch((error) => res.status(500).render('error', { error: error.message }));
+      .catch((error) => res.status(500).json({ error: error.message }));
   })
   .delete((req, res) => {
     const { id } = req.params;
@@ -44,7 +42,7 @@ router.route('/:id')
           res.clearCookie('user_uid');
 
           // формирование ответа при успешном удалении
-          res.json({ delete: true, message: '/' });
+          res.json({ delete: true, url: '/' });
         } else {
           // формирование ответа при некоректном удалении
           res.status(404).json({ delete: false });

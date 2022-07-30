@@ -6,8 +6,12 @@ require('dotenv').config();
 
 const express = require('express');
 const config = require('./config/config');
-const mainRouter = require('./routes/main.route');
-const usersRouter = require('./routes/users.route');
+const apiRouter = require('./routes/api/api.main');
+const mainRouter = require('./routes/render/main.route');
+const authRouter = require('./routes/render/auth.route');
+const regRouter = require('./routes/render/reg.route');
+const usersRouter = require('./routes/render/users.route');
+
 const errorHandler = require('./middleware/errorHandler');
 const { sequelize } = require('./db/models');
 
@@ -22,6 +26,9 @@ config(app);
 
 // маршрутизация приложения
 app.use('/', mainRouter);
+app.use('/api', apiRouter);
+app.use('/auth', authRouter);
+app.use('/registration', regRouter);
 app.use('/users', usersRouter);
 
 // обработка ошибок из next(error)
@@ -31,4 +38,6 @@ app.use(errorHandler);
 sequelize.authenticate();
 
 // прослушивание порта приложения
-app.listen(port, () => console.log(`*** Server started at ${port} port ***`));
+app.listen(port, () => {
+  console.log(`*** Server started at ${port} port ***`);
+});

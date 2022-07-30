@@ -36,7 +36,7 @@ function Home({ title }) {
             <div className="h-100 p-5 text-white bg-dark rounded-3">
               <h2>Authorization in the app</h2>
               <p>Log in if you have already used this application and have an account</p>
-              <a href="/login" className="btn btn-outline-light">Login</a>
+              <a href="/auth" className="btn btn-outline-light">Login</a>
             </div>
           </div>
           <div className="col-md-6">

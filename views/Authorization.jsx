@@ -6,12 +6,12 @@ const PropTypes = require('prop-types');
 const Layout = require('./Layout');
 const Footer = require('./Footer');
 
-function Login({ title }) {
+function Authorization({ title }) {
   return (
     <Layout title={title}>
       <section className="container text-center">
         <main className="form-signin">
-          <form id="formLogin" method="POST" action="/login">
+          <form id="formLogin" method="POST" action="/auth">
             <h1 className="h3 mb-3 fw-normal">Fill in the fields</h1>
 
             <div className="form-floating">
@@ -47,7 +47,7 @@ function Login({ title }) {
 
             <button type="submit" className="w-100 btn btn-lg btn-success mt-1">Login now</button>
             <a href="/" className="w-100 btn btn-lg btn-outline-secondary mt-1">Back home</a>
-
+            <a href="/auth/forgot">Forgot your password?</a>
           </form>
         </main>
 
@@ -59,8 +59,8 @@ function Login({ title }) {
 }
 
 // PropTypes
-Login.propTypes = {
+Authorization.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-module.exports = Login;
+module.exports = Authorization;
