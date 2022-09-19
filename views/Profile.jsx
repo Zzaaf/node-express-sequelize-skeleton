@@ -43,7 +43,7 @@ function Profile({
             </ul>
             <div className="card-body d-flex justify-content-around">
               <a href={`/users/${user.id}`} className="btn btn-primary">Edit profile</a>
-              <button id="deleteBtn" type="button" data-url="/users/{{id}}" className="btn btn-danger">Delete profile</button>
+              <button id="deleteBtn" type="button" data-url={`/users/${user.id}`} className="btn btn-danger">Delete profile</button>
             </div>
           </div>
 
