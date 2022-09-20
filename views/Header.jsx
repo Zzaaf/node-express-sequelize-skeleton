@@ -39,7 +39,7 @@ function Header({ user }) {
 
 // PropTypes
 Header.propTypes = {
-  user: PropTypes.shape({ username: PropTypes.string }).isRequired,
+  user: PropTypes.shape({ username: PropTypes.string || undefined }).isRequired,
 };
 
 module.exports = Header;

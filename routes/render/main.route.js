@@ -15,9 +15,9 @@ router.route('/')
 router.route('/logout')
   .get((req, res, next) => {
     // получение пользователя из сессии
-    const { user } = req.session;
+    const { userId } = req.session;
 
-    if (user) {
+    if (userId) {
       try {
         // удаление сессии на сервере
         req.session.destroy();
@@ -38,12 +38,14 @@ router.route('/logout')
 // маршрутизация профиля
 router.route('/profile')
   .get((req, res) => {
-    const { user } = req.session;
+    const { userId } = req.session;
 
-    if (user) {
+    console.log(req.user.createdAt);
+
+    if (userId) {
       res.renderComponent(Profile, {
-        user,
-        registration: user.createdAt.slice(0, 10),
+        user: req.user,
+        registration: req.user.createdAt.toString(),
         ip: req.ip ?? '127.0.0.1',
         title: 'Your Profile',
       });
@@ -55,10 +57,10 @@ router.route('/profile')
 // маршрутизация панели управления
 router.route('/dashboard')
   .get((req, res) => {
-    const { user } = req.session;
+    const { userId } = req.session;
 
-    if (user) {
-      res.renderComponent(Dashboard, { title: 'Your Dashboard', user });
+    if (userId) {
+      res.renderComponent(Dashboard, { title: 'Your Dashboard', user: req.user });
     } else {
       res.redirect('/auth');
     }

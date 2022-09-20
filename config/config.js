@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const sessionConfig = require('./sessionConfig');
-const { cookiesCleaner, resLocals } = require('../middleware/auth');
+const { cookiesCleaner, resLocals, getUser } = require('../middleware/auth');
 const ssr = require('../middleware/ssr');
 
 // главная конфигурация приложения
@@ -24,6 +24,7 @@ const config = (app) => {
   app.use(session(sessionConfig));
   app.use(cookiesCleaner);
   app.use(resLocals);
+  app.use(getUser);
   app.use(ssr);
 };
 

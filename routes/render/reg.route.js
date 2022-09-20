@@ -18,6 +18,7 @@ router.route('/')
   .post(async (req, res, next) => {
     const { username, email, password } = req.body;
 
+    // получение пользователя из БД для дальнейшей проверки
     const userInDb = await User.findOne({ where: { email } });
 
     if (userInDb) {
@@ -33,8 +34,8 @@ router.route('/')
         // дожидаемся асинхронного сохранения ресурса в базе
         await user.save();
 
-        // формирование сессии, user добавляется в неё как объект
-        req.session.user = user;
+        // наполнение сессии ID зарегистрированного пользователя
+        req.session.userId = user.id;
 
         res.status(201).json({ registration: true, url: '/dashboard' });
       } catch (error) {

@@ -21,8 +21,8 @@ router.route('/')
 
     // двойная проверка, на наличие пользователя в БД и совпадение паролей в БД и теле запроса
     if (user && (await bcrypt.compare(password, user.password))) {
-      // формирование сессии на основе полученного пользователя из БД
-      req.session.user = user;
+      // наполнение сессии ID авторизованного пользователя
+      req.session.userId = user.id;
 
       // JSON ответ для редиректа на панель управления
       res.json({ login: true, url: '/dashboard' });
