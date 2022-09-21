@@ -13,7 +13,7 @@ router.route('/')
 router.route('/:id')
   .get((req, res) => {
     const { id } = req.params;
-    const { user } = req;
+    const { user } = res.locals;
 
     res.renderComponent(Edit, { user, id, title: 'Edit your profile' });
   })

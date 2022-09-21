@@ -39,7 +39,7 @@ function Edit({ user, id, title }) {
 // PropTypes
 Edit.propTypes = {
   title: PropTypes.string.isRequired,
-  user: PropTypes.shape({ username: PropTypes.string }).isRequired,
+  user: PropTypes.shape({ username: PropTypes.string, email: PropTypes.string }).isRequired,
   id: PropTypes.number.isRequired,
 };
 

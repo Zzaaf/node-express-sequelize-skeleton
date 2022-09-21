@@ -40,12 +40,10 @@ router.route('/profile')
   .get((req, res) => {
     const { userId } = req.session;
 
-    console.log(req.user.createdAt);
-
     if (userId) {
       res.renderComponent(Profile, {
-        user: req.user,
-        registration: req.user.createdAt.toString(),
+        user: res.locals.user,
+        registration: res.locals.user.createdAt.toString(),
         ip: req.ip ?? '127.0.0.1',
         title: 'Your Profile',
       });
@@ -60,7 +58,7 @@ router.route('/dashboard')
     const { userId } = req.session;
 
     if (userId) {
-      res.renderComponent(Dashboard, { title: 'Your Dashboard', user: req.user });
+      res.renderComponent(Dashboard, { title: 'Your Dashboard', user: res.locals.user });
     } else {
       res.redirect('/auth');
     }

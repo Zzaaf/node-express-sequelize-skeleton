@@ -31,7 +31,7 @@ const resLocals = (req, res, next) => {
 // промежуточная функция поиска пользователя в БД по ID из сессии
 const getUser = async (req, res, next) => {
   if (req.session.userId) {
-    req.user = await User.findByPk(Number(req.session.userId), { raw: true });
+    res.locals.user = await User.findByPk(Number(req.session.userId), { raw: true });
   }
 
   next();
