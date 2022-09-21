@@ -15,7 +15,7 @@ function Profile({
 
       <main className="flex-shrink-0">
         <div className="container">
-          <div className="card mt-5" style={{ width: '18rem' }}>
+          <div className="card" style={{ width: '18rem' }}>
             <i className="bi bi-person-bounding-box profile-avatar" />
             <div className="card-body">
               <h5 className="card-title">

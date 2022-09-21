@@ -6,11 +6,14 @@ require('dotenv').config();
 
 const express = require('express');
 const config = require('./config/config');
+
+// роутеры
 const apiRouter = require('./routes/api/api.main');
 const mainRouter = require('./routes/render/main.route');
 const authRouter = require('./routes/render/auth.route');
 const regRouter = require('./routes/render/reg.route');
 const usersRouter = require('./routes/render/users.route');
+const cardsRouter = require('./routes/render/cards.route');
 
 const errorHandler = require('./middleware/errorHandler');
 const { sequelize } = require('./db/models');
@@ -30,6 +33,7 @@ app.use('/api', apiRouter);
 app.use('/auth', authRouter);
 app.use('/registration', regRouter);
 app.use('/users', usersRouter);
+app.use('/cards', cardsRouter);
 
 // обработка ошибок из next(error)
 app.use(errorHandler);
