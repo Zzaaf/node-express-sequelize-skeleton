@@ -1,20 +1,9 @@
 const React = require('react');
 
-function AddCard(props) {
+function AddCard() {
   return (
-    <div
-      className="m-4"
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        cursor: 'pointer',
-        fontSize: '4rem',
-      }}
-    >
-
+    <div className="add-card m-4">
       <i className="bi bi-plus-square-dotted" />
-
     </div>
   );
 }

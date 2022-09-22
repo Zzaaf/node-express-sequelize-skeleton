@@ -75,3 +75,23 @@ a {
   justify-content: center;
   margin: 1rem;
 }
+
+.add-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 4rem;
+  height: 12rem;
+  width: 12rem;
+  border-radius: 10px;
+  border: 1px solid #808080;
+}
+
+.add-card > i {
+  color: #808080;
+}
+
+.add-card:hover {
+  background-color: #8080802e;
+}
