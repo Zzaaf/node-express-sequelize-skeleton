@@ -17,6 +17,10 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
       },
+      subscribe: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

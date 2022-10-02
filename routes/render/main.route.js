@@ -5,6 +5,7 @@ const { sessionChecker } = require('../../middleware/auth');
 const Home = require('../../views/Home');
 const Dashboard = require('../../views/Dashboard');
 const Profile = require('../../views/Profile');
+const Unsubscribe = require('../../views/Unsubscribe');
 
 // маршрутизация главной страницы
 router.route('/')
@@ -62,6 +63,18 @@ router.route('/dashboard')
     } else {
       res.redirect('/auth');
     }
+  });
+
+// обработчик отписки от почтовой рассылки
+router.route('/unsubscribe/:email')
+  .get((req, res) => {
+    const { email } = req.params;
+
+    // рендер диалоговой страницы для формирования отписки
+    res.renderComponent(Unsubscribe, { title: 'Do you want to unsubscribe?', email });
+  })
+  .put((req, res) => {
+    // логика исключения указанной почты из списка рассылки
   });
 
 module.exports = router;

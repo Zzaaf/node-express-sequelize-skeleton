@@ -9,7 +9,7 @@ const { cookiesCleaner, resLocals, getUser } = require('../middleware/auth');
 const ssr = require('../middleware/ssr');
 
 // главная конфигурация приложения
-const config = (app) => {
+const serverConfig = (app) => {
   // использование middleware
   app.use(helmet.hidePoweredBy());
   app.use(helmet.xssFilter());
@@ -28,4 +28,4 @@ const config = (app) => {
   app.use(ssr);
 };
 
-module.exports = config;
+module.exports = serverConfig;

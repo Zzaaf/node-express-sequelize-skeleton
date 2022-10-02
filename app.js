@@ -5,7 +5,7 @@ require('@babel/register');
 require('dotenv').config();
 
 const express = require('express');
-const config = require('./config/config');
+const serverConfig = require('./config/serverConfig');
 
 // роутеры
 const apiRouter = require('./routes/api/api.main');
@@ -25,7 +25,7 @@ const app = express();
 const port = process.env.PORT ?? 3000;
 
 // конфигурация приложения
-config(app);
+serverConfig(app);
 
 // маршрутизация приложения
 app.use('/', mainRouter);

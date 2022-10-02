@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
+const { mailer, messageCreator } = require('../../config/nodemailerConfig');
 const { User } = require('../../db/models');
 
 // компоненты
@@ -41,12 +42,16 @@ router.route('/forgot')
     const { email } = req.body;
 
     // поиск в БД по email и получение объекта пользователя
-    const user = await User.findOne({ where: { email } });
+    const userInDb = await User.findOne({ where: { email }, raw: true });
 
-    // двойная проверка, на наличие пользователя в БД и совпадение паролей в БД и теле запроса
-    if (user) {
+    if (userInDb) {
       // формирование письма на почту + клиентское информирование
-      console.log(user);
+      console.log(userInDb);
+
+      // фактическая отправка письма на почту пользователя
+      mailer(messageCreator(userInDb.email, 'Reset your password', `
+        If you have forgotten your account password, you can recover it at any time.
+      `));
 
       // JSON ответ для редиректа на панель управления
       res.json({ reset: true, message: 'Password reset email has been sent' });
