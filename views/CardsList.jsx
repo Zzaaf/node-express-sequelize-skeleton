@@ -23,6 +23,10 @@ function CardsList({ user, title }) {
             <Card />
 
             <AddCard />
+
+            <form action="/cards" method="post">
+              <button type="submit">Add</button>
+            </form>
           </section>
 
           <Footer />
