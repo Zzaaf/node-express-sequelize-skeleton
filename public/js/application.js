@@ -9,10 +9,15 @@ const pass = document.querySelector('#regPassword');
 const confPass = document.querySelector('#regConfirmPassword');
 const loginPassword = document.querySelector('#loginPassword');
 
+// Modals
+const modal = document.querySelector('.modal');
+
 // Buttons
 const deleteBtn = document.querySelector('#deleteBtn');
 const iconEye = document.querySelector('#iconEye');
 const wrapIcon = document.querySelector('#wrapIcon');
+const addCard = document.querySelector('.add-card');
+const closeBtn = document.querySelector('.btn-close');
 
 // Sectoins
 const feedback = document.querySelector('#feedback');
@@ -178,5 +183,17 @@ if (wrapIcon) {
       iconEye.classList.remove('bi-eye-slash');
       loginPassword.setAttribute('type', 'password');
     }
+  });
+}
+
+if (addCard) {
+  addCard.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+}
+
+if (closeBtn) {
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
   });
 }

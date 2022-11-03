@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const React = require('react');
 const PropTypes = require('prop-types');
 
@@ -7,26 +8,29 @@ const Footer = require('./Footer');
 const Layout = require('./Layout');
 const Card = require('./Card');
 const AddCard = require('./AddCard');
+const Modal = require('./Modal');
 
-function CardsList({ user, title }) {
+function CardsList({ user, title, cards }) {
+  console.log(cards);
+
   return (
     <Layout title={title}>
       <Header user={user} />
 
       <main className="flex-shrink-0">
         <div className="container">
-          <section style={{
-            display: 'flex',
+          <section>
 
-          }}
-          >
-            <Card />
+            <div className="row">
+              <div className="d-flex justify-content-md-center">
+                <AddCard />
+              </div>
+            </div>
 
-            <AddCard />
+            {cards.length && cards.map((card) => <Card key={card.id} card={card} />)}
 
-            <form action="/cards" method="post">
-              <button type="submit">Add</button>
-            </form>
+            <Modal />
+
           </section>
 
           <Footer />
