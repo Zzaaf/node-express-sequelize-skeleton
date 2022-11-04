@@ -3,6 +3,7 @@ const formRegistration = document.querySelector('#formRegistration');
 const formEdit = document.querySelector('#formEdit');
 const formLogin = document.querySelector('#formLogin');
 const formForgot = document.querySelector('#formForgot');
+const formAddCard = document.querySelector('#formAddCard');
 
 // Inputs
 const pass = document.querySelector('#regPassword');
@@ -21,6 +22,7 @@ const closeBtn = document.querySelector('.btn-close');
 
 // Sectoins
 const feedback = document.querySelector('#feedback');
+const cardList = document.querySelector('#cardList');
 
 function validate() {
   if (pass.value !== confPass.value) {
@@ -155,6 +157,33 @@ if (formForgot) {
   });
 }
 
+if (formAddCard) {
+  formAddCard.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    // формирование переменных через деструктуризацию
+    const {
+      method, action, title, content,
+    } = event.target;
+
+    const response = await fetch(action, {
+      method,
+      headers: { 'Content-Type': 'Application/json' },
+      body: JSON.stringify({
+        title: title.value,
+        content: content.value,
+      }),
+    });
+
+    const html = await response.text();
+
+    if (response.status === 201) {
+      modal.style.display = 'none';
+      cardList.insertAdjacentHTML('beforeend', html);
+    }
+  });
+}
+
 if (deleteBtn) {
   deleteBtn.addEventListener('click', async (event) => {
     const { url } = event.target.dataset;
@@ -189,6 +218,20 @@ if (wrapIcon) {
 if (addCard) {
   addCard.addEventListener('click', () => {
     modal.style.display = 'flex';
+    modal.style.height = '100vh';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+  });
+}
+
+if (cardList) {
+  cardList.addEventListener('click', (event) => {
+    if (event.target.classList.contains('btn-danger')) {
+      const deleteElement = document.querySelector(`#card-${event.target.dataset.id}`);
+
+      fetch(`/cards/${event.target.dataset.id}`, { method: 'delete' })
+        .then(() => deleteElement.remove());
+    }
   });
 }
 

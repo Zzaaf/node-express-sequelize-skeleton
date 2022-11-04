@@ -6,13 +6,11 @@ const PropTypes = require('prop-types');
 const Header = require('./Header');
 const Footer = require('./Footer');
 const Layout = require('./Layout');
-const Card = require('./Card');
+const CardItem = require('./CardItem');
 const AddCard = require('./AddCard');
 const Modal = require('./Modal');
 
 function CardsList({ user, title, cards }) {
-  console.log(cards);
-
   return (
     <Layout title={title}>
       <Header user={user} />
@@ -27,7 +25,9 @@ function CardsList({ user, title, cards }) {
               </div>
             </div>
 
-            {cards.length && cards.map((card) => <Card key={card.id} card={card} />)}
+            <div className="card-list" id="cardList">
+              {cards.length && cards.map((card) => <CardItem key={card.id} card={card} />)}
+            </div>
 
             <Modal />
 

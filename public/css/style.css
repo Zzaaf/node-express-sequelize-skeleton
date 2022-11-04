@@ -95,3 +95,9 @@ a {
 .add-card:hover {
   background-color: #8080802e;
 }
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

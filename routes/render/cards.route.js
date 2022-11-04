@@ -1,26 +1,41 @@
+/* eslint-disable max-len */
 const router = require('express').Router();
-const CardsList = require('../../views/CardsList');
 const { Card } = require('../../db/models');
+const CardsList = require('../../views/CardsList');
+const CardItem = require('../../views/CardItem');
 
 router.route('/')
   .get(async (req, res) => {
     const { userId } = req.session;
 
-    const cards = await Card.findAll({ where: { author: userId }, raw: true });
-
-    res.renderComponent(CardsList, { user: res.locals.user, title: 'Your cards', cards });
+    Card.findAll({ where: { author: userId }, raw: true })
+      .then((cards) => res.renderComponent(CardsList, { user: res.locals.user, title: 'Your cards', cards }));
   })
   .post(async (req, res) => {
     const { userId } = req.session;
+    const { title, content } = req.body;
 
-    await Card.create({ title: 'Example', author: userId });
-
-    res.send('Card created!');
+    if (title && content) {
+      Card.create({ title, content, author: userId })
+        .then(({ dataValues }) => res.status(201).renderComponent(CardItem, { card: dataValues }, { doctype: false }));
+    } else {
+      res.status(400).json({ created: false });
+    }
   });
 
 router.route('/:id')
-  .get()
-  .put()
-  .delete();
+  .get((req, res) => {
+
+  })
+  .put((req, res) => {
+
+  })
+  .delete(async (req, res) => {
+    const { id } = req.params;
+
+    Card.destroy({ where: { id } })
+      .then((deletedCard) => (deletedCard ? res.json(id) : res.status(404).json(deletedCard)))
+      .catch((error) => res.status(500).json({ error: error.message }));
+  });
 
 module.exports = router;
