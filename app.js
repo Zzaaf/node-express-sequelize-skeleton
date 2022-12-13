@@ -9,11 +9,11 @@ const serverConfig = require('./config/serverConfig');
 
 // роутеры
 const apiRouter = require('./routes/api/api.main');
-const mainRouter = require('./routes/render/main.route');
-const authRouter = require('./routes/render/auth.route');
-const regRouter = require('./routes/render/reg.route');
-const usersRouter = require('./routes/render/users.route');
-const cardsRouter = require('./routes/render/cards.route');
+const mainRouter = require('./routes/render/main.routes');
+const authRouter = require('./routes/render/auth.routes');
+const regRouter = require('./routes/render/reg.routes');
+const usersRouter = require('./routes/render/users.routes');
+const cardsRouter = require('./routes/render/cards.routes');
 
 const errorHandler = require('./middleware/errorHandler');
 const { sequelize } = require('./db/models');

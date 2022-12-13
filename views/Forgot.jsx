@@ -9,7 +9,7 @@ const Footer = require('./Footer');
 function Forgot({ title }) {
   return (
     <Layout title={title}>
-      <section className="container text-center">
+      <section className="container text-center flex-grow-1">
         <main className="form-forgot">
           <form id="formForgot" method="POST" action="/auth/forgot">
             <h1 className="h3 mb-3 fw-normal">Fill in the fields to reset your password</h1>
@@ -35,9 +35,8 @@ function Forgot({ title }) {
           </form>
         </main>
 
-        <Footer />
-
       </section>
+      <Footer />
     </Layout>
   );
 }

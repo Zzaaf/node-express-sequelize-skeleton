@@ -21,10 +21,10 @@ function Dashboard({ title, user }) {
           </h1>
           <p className="lead">Welcome to your Dashboard</p>
 
-          <Footer />
-
         </div>
       </main>
+
+      <Footer />
     </Layout>
   );
 }

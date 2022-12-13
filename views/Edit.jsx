@@ -29,9 +29,9 @@ function Edit({ user, id, title }) {
             </form>
           </div>
 
-          <Footer />
         </div>
       </main>
+      <Footer />
     </Layout>
   );
 }

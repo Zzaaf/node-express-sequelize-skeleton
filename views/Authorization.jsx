@@ -9,7 +9,7 @@ const Footer = require('./Footer');
 function Authorization({ title }) {
   return (
     <Layout title={title}>
-      <section className="container text-center">
+      <section className="container text-center flex-grow-1">
         <main className="form-signin">
           <form id="formLogin" method="POST" action="/auth">
             <h1 className="h3 mb-3 fw-normal">Fill in the fields</h1>
@@ -51,9 +51,9 @@ function Authorization({ title }) {
           </form>
         </main>
 
-        <Footer />
-
       </section>
+
+      <Footer />
     </Layout>
   );
 }

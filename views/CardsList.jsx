@@ -26,16 +26,16 @@ function CardsList({ user, title, cards }) {
             </div>
 
             <div className="card-list" id="cardList">
-              {cards.length && cards.map((card) => <CardItem key={card.id} card={card} />)}
+              {cards.length > 0 && cards.map((card) => <CardItem key={card.id} card={card} />)}
             </div>
 
             <Modal />
 
           </section>
 
-          <Footer />
         </div>
       </main>
+      <Footer />
     </Layout>
   );
 }

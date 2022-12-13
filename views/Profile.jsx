@@ -49,9 +49,9 @@ function Profile({
             </div>
           </div>
 
-          <Footer />
         </div>
       </main>
+      <Footer />
     </Layout>
   );
 }
