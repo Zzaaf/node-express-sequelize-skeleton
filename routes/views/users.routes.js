@@ -2,8 +2,8 @@ const router = require('express').Router();
 const { User } = require('../../db/models');
 
 // компоненты
-const Login = require('../../views/Authorization');
-const Edit = require('../../views/Edit');
+const Login = require('../../components/Authorization');
+const Edit = require('../../components/Edit');
 
 router.route('/')
   .get((req, res) => {

@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 const router = require('express').Router();
 const { Card } = require('../../db/models');
-const CardsList = require('../../views/CardsList');
-const CardItem = require('../../views/CardItem');
+const CardsList = require('../../components/CardsList');
+const CardItem = require('../../components/CardItem');
 
 router.route('/')
   .get(async (req, res) => {

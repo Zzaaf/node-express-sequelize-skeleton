@@ -4,7 +4,7 @@ const { sessionChecker } = require('../../middleware/auth');
 const { User } = require('../../db/models');
 
 // компоненты
-const Registration = require('../../views/Registration');
+const Registration = require('../../components/Registration');
 
 const saltRounds = 10;
 

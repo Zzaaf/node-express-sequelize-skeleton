@@ -2,10 +2,10 @@ const router = require('express').Router();
 const { sessionChecker } = require('../../middleware/auth');
 
 // компоненты
-const Home = require('../../views/Home');
-const Dashboard = require('../../views/Dashboard');
-const Profile = require('../../views/Profile');
-const Unsubscribe = require('../../views/Unsubscribe');
+const Home = require('../../components/Home');
+const Dashboard = require('../../components/Dashboard');
+const Profile = require('../../components/Profile');
+const Unsubscribe = require('../../components/Unsubscribe');
 
 // маршрутизация главной страницы
 router.route('/')

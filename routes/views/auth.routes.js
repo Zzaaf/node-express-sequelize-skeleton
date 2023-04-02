@@ -4,8 +4,8 @@ const { mailer, messageCreator } = require('../../config/nodemailerConfig');
 const { User } = require('../../db/models');
 
 // компоненты
-const Authorization = require('../../views/Authorization');
-const Forgot = require('../../views/Forgot');
+const Authorization = require('../../components/Authorization');
+const Forgot = require('../../components/Forgot');
 
 // маршрутизация авторизации
 router.route('/')

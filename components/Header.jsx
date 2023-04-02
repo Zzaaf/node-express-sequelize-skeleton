@@ -40,7 +40,11 @@ function Header({ user }) {
 
 // PropTypes
 Header.propTypes = {
-  user: PropTypes.shape({ username: PropTypes.string || undefined }).isRequired,
+  user: PropTypes.shape({ username: PropTypes.string || undefined }),
+};
+
+Header.defaultProps = {
+  user: undefined,
 };
 
 module.exports = Header;

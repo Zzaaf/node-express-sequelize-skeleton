@@ -8,12 +8,12 @@ const express = require('express');
 const serverConfig = require('./config/serverConfig');
 
 // роутеры
-const apiRouter = require('./routes/api/api.main');
-const mainRouter = require('./routes/render/main.routes');
-const authRouter = require('./routes/render/auth.routes');
-const regRouter = require('./routes/render/reg.routes');
-const usersRouter = require('./routes/render/users.routes');
-const cardsRouter = require('./routes/render/cards.routes');
+const apiRouter = require('./routes/api/main.routes');
+const mainRouter = require('./routes/views/main.routes');
+const authRouter = require('./routes/views/auth.routes');
+const regRouter = require('./routes/views/reg.routes');
+const usersRouter = require('./routes/views/users.routes');
+const cardsRouter = require('./routes/views/cards.routes');
 
 const errorHandler = require('./middleware/errorHandler');
 const { sequelize } = require('./db/models');
@@ -22,7 +22,7 @@ const { sequelize } = require('./db/models');
 const app = express();
 
 // условное формирование порта
-const port = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 3000;
 
 // конфигурация приложения
 serverConfig(app);
@@ -42,6 +42,6 @@ app.use(errorHandler);
 sequelize.authenticate();
 
 // прослушивание порта приложения
-app.listen(port, () => {
-  console.log(`*** Server started at ${port} port ***`);
+app.listen(PORT, () => {
+  console.log(`*** Server started at ${PORT} port ***`);
 });
